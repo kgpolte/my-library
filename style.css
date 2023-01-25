@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  padding: 0;
 }
 
 html {
@@ -16,13 +17,28 @@ body {
 
 .header {
   background: rgb(9, 62, 71);
+  box-sizing: border-box;
   width: 100%;
+  padding: 1em;
   box-shadow: 2px 2px 5px #aaa;
-  padding: 1.5em;
+  display: grid;
+  grid-template-columns: 1fr max-content;
 }
 
 .header > h2 {
   color: #fff;
+}
+
+.header > button {
+  background: none;
+  border-style: none;
+}
+.header > button:hover {
+  filter: drop-shadow(0px 0px 2px #aaa);
+}
+
+.header > button > svg {
+  fill: #fff;
 }
 
 #books {
@@ -42,4 +58,86 @@ body {
   gap: 0.5em;
   background: #fff;
   box-shadow: 2px 2px 5px #aaa;
+}
+
+.form-wrapper {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 20%;
+  bottom: 20%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+#add-book {
+  height: max-content;
+  width: max-content;
+  display: grid;
+  gap: 1em;
+  align-content: center;
+  justify-content: center;
+  padding: 2em;
+  background: #fff;
+  border: 2px solid #0077ff;
+  border-radius: 8px;
+  box-shadow: 4px 4px 8px #aaa;
+}
+
+.hidden {
+  display: none;
+}
+
+#new-book-read > ul{
+  display: grid;
+  justify-items: start;
+}
+
+fieldset {
+  padding: 1em;
+}
+
+fieldset > .form-inputs {
+  display: grid;
+  gap: 1em;
+}
+
+.input-group > label {
+  display: grid;
+  grid-template-columns: 2em 1fr;
+  align-items: center;
+}
+
+input[type="radio"] {
+  appearance: none;
+  height: 1em;
+  width: 1em;
+  border: 1px solid gray;
+  border-radius: 50%;
+}
+input[type="radio"]:hover {
+  border-color: #000;
+}
+input[type="radio"]:checked{
+  box-shadow: inset 0px 0px 3px 3px #0077ff;
+}
+
+label {
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  width: 300px;
+  padding: 0.5em;
+}
+
+#submit {
+  width: max-content;
+  padding: 1em;
+  justify-self: end;
 }
