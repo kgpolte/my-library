@@ -60,6 +60,11 @@ body {
   box-shadow: 2px 2px 5px #aaa;
 }
 
+.remove-button {
+  justify-self: end;
+  padding: 0.5em 1em;
+}
+
 .form-wrapper {
   position: absolute;
   left: 20%;
