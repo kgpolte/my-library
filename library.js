@@ -13,11 +13,12 @@ function removeBook(card) {
 }
 
 function addBookToLibrary(title, author, pages, read) {
-  const book = new Book(title, author, pages, read);
-  myLibrary.push(book);
+  myLibrary.push(new Book(title, author, pages, read));
 }
 
 function renderTrashIcon(element) {
+  /* Trash can icon by Austin Andrews on Pictogrammer 
+     https://pictogrammers.com/library/mdil/icon/delete/ */
   const iconSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   const iconPath = document.createElementNS(
     "http://www.w3.org/2000/svg",
