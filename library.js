@@ -12,103 +12,66 @@ function addBookToLibrary(title, author, pages, read) {
   myLibrary.push(book);
 }
 
-function showBooks() {
+function addCard(book) {
   const bookDisplay = document.getElementById("books");
 
-  myLibrary.forEach((book) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.setAttribute("data-index", myLibrary.indexOf(book));
 
-    const title = document.createElement("h3");
-    title.textContent = book.title;
-    card.appendChild(title);
+  const title = document.createElement("h3");
+  title.textContent = book.title;
+  card.appendChild(title);
 
-    const author = document.createElement("p");
-    author.textContent = `by ${book.author}`;
-    card.appendChild(author);
+  const author = document.createElement("p");
+  author.textContent = `by ${book.author}`;
+  card.appendChild(author);
 
-    const pages = document.createElement("p");
-    pages.textContent = `${book.pages} pages`;
-    card.appendChild(pages);
+  const pages = document.createElement("p");
+  pages.textContent = `${book.pages} pages`;
+  card.appendChild(pages);
 
-    const read = document.createElement("p");
-    read.textContent = `${book.read ? "read" : "not read"}`;
-    card.appendChild(read);
+  const read = document.createElement("p");
+  read.textContent = `${book.read ? "read" : "not read"}`;
+  card.appendChild(read);
 
-    bookDisplay.appendChild(card);
-  });
+  bookDisplay.appendChild(card);
 }
 
-const addButton = document.getElementById("add");
-addButton.addEventListener("click", (e) => {
-  if (document.querySelector(".form-wrapper")) {
-    return;
-  }
+function showBooks() {
+  myLibrary.forEach((book) => addCard(book));
+}
 
-  const formWrapper = document.createElement("div");
-  formWrapper.classList.add("form-wrapper");
+function hideForm() {
+  const form = document.getElementById("add-book");
+  form.reset();
+  document.querySelector(".form-wrapper").classList.add("hidden");
+}
 
-  const form = document.createElement("form");
+document.getElementById("add").addEventListener("click", () => {
+  document.querySelector(".form-wrapper").classList.remove("hidden");
+});
 
-  const fieldset = document.createElement("fieldset");
-  const legend = document.createElement("legend");
-  legend.textContent = "Book Details";
-  fieldset.appendChild(legend);
+document.getElementById("cancel").addEventListener("click", () => {
+  hideForm();
+});
 
-  const formInputs = document.createElement("ul");
-  formInputs.classList.add("form-inputs");
+document.getElementById("submit").addEventListener("click", (e) => {
+  const inputs = Array.from(document.querySelectorAll("input"));
+  const invalidInputs = inputs.filter((input) => !input.validity.valid);
+  if (invalidInputs.length > 0) return;
 
-  const titleGroup = document.createElement("li");
-  titleGroup.classList.add("input-group");
-  const titleLabel = document.createElement("label");
-  titleLabel.setAttribute("for", "title");
-  titleLabel.textContent = "Title";
-  const titleInput = document.createElement("input");
-  titleInput.setAttribute("id", "title");
-  titleInput.setAttribute("name", "title");
-  titleInput.setAttribute("required", true);
-  titleGroup.appendChild(titleLabel);
-  titleGroup.appendChild(titleInput);
-  formInputs.appendChild(titleGroup);
+  e.preventDefault();
+  addBookToLibrary(
+    inputs[0].value,
+    inputs[1].value,
+    inputs[2].value,
+    inputs[3].checked
+  );
 
-  const authorGroup = document.createElement("li");
-  authorGroup.classList.add("input-group");
-  const authorLabel = document.createElement("label");
-  authorLabel.setAttribute("for", "author");
-  authorLabel.textContent = "Author";
-  const authorInput = document.createElement("input");
-  authorInput.setAttribute("id", "author");
-  authorInput.setAttribute("name", "author");
-  authorInput.setAttribute("required", true);
-  authorGroup.appendChild(authorLabel);
-  authorGroup.appendChild(authorInput);
-  formInputs.appendChild(authorGroup);
-
-  const pagesGroup = document.createElement("li");
-  pagesGroup.classList.add("input-group");
-  const pagesLabel = document.createElement("label");
-  pagesLabel.setAttribute("for", "pages");
-  pagesLabel.textContent = "Pages";
-  const pagesInput = document.createElement("input");
-  pagesInput.setAttribute("type", "number");
-  pagesInput.setAttribute("id", "pages");
-  pagesInput.setAttribute("name", "pages");
-  pagesInput.setAttribute("required", true);
-  pagesGroup.appendChild(pagesLabel);
-  pagesGroup.appendChild(pagesInput);
-  formInputs.appendChild(pagesGroup);
-
-  fieldset.appendChild(formInputs);
-  form.appendChild(fieldset);
-
-
-
-  const submitButton = document.createElement("button");
-  submitButton.textContent = "Add";
-  form.appendChild(submitButton);
-
-  formWrapper.appendChild(form);
-  document.getElementById("main").appendChild(formWrapper);
+  addCard(myLibrary[myLibrary.length - 1]);
+  document.getElementById("add-book").reset();
+  hideForm();
 });
 
 addBookToLibrary("Dune", "Frank Herbert", 395, true);

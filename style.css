@@ -104,27 +104,24 @@ fieldset > .form-inputs {
 }
 
 .input-group > label {
-  display: grid;
-  grid-template-columns: 2em 1fr;
-  align-items: center;
-}
+  display: flex;
+  gap: 1em;
+} 
 
-input[type="radio"] {
+input[type="checkbox"] {
   appearance: none;
   height: 1em;
   width: 1em;
   border: 1px solid gray;
-  border-radius: 50%;
+  border-radius: 2px;
+  position: relative;
+  bottom: -0.2em;
 }
-input[type="radio"]:hover {
+input[type="checkbox"]:hover {
   border-color: #000;
 }
-input[type="radio"]:checked{
+input[type="checkbox"]:checked{
   box-shadow: inset 0px 0px 3px 3px #0077ff;
-}
-
-label {
-  display: block;
 }
 
 ul {
@@ -136,8 +133,13 @@ input {
   padding: 0.5em;
 }
 
-#submit {
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+}
+
+.buttons > button {
   width: max-content;
   padding: 1em;
-  justify-self: end;
 }

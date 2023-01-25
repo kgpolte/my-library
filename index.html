@@ -15,7 +15,9 @@
         xmlns="http://www.w3.org/2000/svg"
         width="2em"
         height="2em"
-        viewBox="0 0 24 24">
+        viewBox="0 0 24 24"
+        role="graphics-symbol"
+        aria-label="Add a book">
         <path d="M17,13H13V17H11V13H7V11H11V7H13V11H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
       </svg>
     </button>
@@ -24,7 +26,7 @@
   <div id="main">
     <div id="books"></div>
 
-    <div class="form-wrapper">
+    <div class="form-wrapper hidden">
       <form id="add-book">
         <h2>Add a book to your library!</h2>
         <fieldset id="new-book-details">
@@ -42,28 +44,20 @@
               <label for="pages">Pages</label>
               <input type="number" id="pages" min="1" required>
             </li>
-          </ul>
-        </fieldset>
-
-        <fieldset id="new-book-read">
-          <legend>Have you read this book?</legend>
-          <ul class="form-inputs">
-            <li class="input-group">
-              <label for="yes">
-                <input type="radio" name="read" id="yes">
-                Yes
-              </label>
-            </li>
-            <li class="input-group">
-              <label for="no">
-                <input type="radio" name="read" id="no" checked>
-                No
+            <li class="input-group checkbox">
+              
+              <label for="read">
+                <input type="checkbox" id="read">
+                I've Read this book.
               </label>
             </li>
           </ul>
         </fieldset>
 
-        <button id="submit">Add Book</button>
+        <div class="buttons">
+          <button id="submit">Add Book</button>
+          <button type="button" id="cancel">Cancel</button>
+        </div>
       </form>
     </div>
   </div>
