@@ -89,7 +89,18 @@ body {
 
 .remove-button {
   justify-self: end;
-  padding: 0.5em 1em;
+  border: none;
+  background: none;
+}
+
+.remove-button > svg {
+  fill: gray;
+  transition: fill 200ms;
+}
+.remove-button > svg:hover {
+  fill: black;
+  transition: fill 200ms;
+  filter: drop-shadow(2px 2px 2px #888);
 }
 
 .form-wrapper {
